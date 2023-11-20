@@ -1,9 +1,12 @@
 package tn.esprit.gestionZoo.main;
 
 import tn.esprit.gestionZoo.entities.*;
+import tn.esprit.gestionZoo.exception.*;
+
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidAgeException {
         Animal lion = new Animal();
         lion.setName("Simba");
         lion.setAge(8);
@@ -14,11 +17,30 @@ public class Main {
         Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
 
 
-        Animal dog = new Animal("Canine", "Snoopy", -2, true);
+        Animal dog = new Animal("Canine", "Snoopy", 2, true);
 
 
-        System.out.println(myZoo.addAnimal(lion));
-        System.out.println(myZoo.addAnimal(dog));
+        try {
+            myZoo.addAnimal(lion);
+            System.out.println("Animal added successfully");
+        } catch (ZooFullException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            myZoo.addAnimal(dog);
+            System.out.println("Animal added successfully");
+        } catch (ZooFullException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            myZoo.addAnimal(dog);
+            System.out.println("Animal added successfully");
+        } catch (ZooFullException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
 
         myZoo.displayAnimals();
 
@@ -32,9 +54,9 @@ public class Main {
 
         System.out.println(myZoo);
 
-        myZoo.addAnimal(lion);
-        myZoo.addAnimal(dog);
-        myZoo.addAnimal(dog2);
+//        myZoo.addAnimal(lion);
+//        myZoo.addAnimal(dog);
+ //       myZoo.addAnimal(dog2);
         myZoo.displayAnimals();
         System.out.println("a" + myZoo.removeAnimal(lion));
         myZoo.displayAnimals();
@@ -67,7 +89,18 @@ public class Main {
         Penguin penguin3 = new Penguin("penguin3", "betri9", 2, true, "b7ar", 5.9f);
         Penguin penguin4 = new Penguin("penguin4", "betri9", 2, true, "b7ar", 5.9f);
 
-        // TODO 27
+//        // TODO 27
+//        myZoo.addAquaticAnimal(dolphin);
+//        myZoo.addAquaticAnimal(dolphin1);
+//        myZoo.addAquaticAnimal(dolphin2);
+//        myZoo.addAquaticAnimal(dolphin3);
+//        myZoo.addAquaticAnimal(dolphin4);
+//        myZoo.addAquaticAnimal(penguin);
+//        myZoo.addAquaticAnimal(penguin1);
+//        myZoo.addAquaticAnimal(penguin2);
+//        myZoo.addAquaticAnimal(penguin3);
+//        myZoo.addAquaticAnimal(penguin4);
+
         myZoo.addAquaticAnimal(dolphin);
         myZoo.addAquaticAnimal(dolphin1);
         myZoo.addAquaticAnimal(dolphin2);
@@ -79,13 +112,17 @@ public class Main {
         myZoo.addAquaticAnimal(penguin3);
         myZoo.addAquaticAnimal(penguin4);
 
+
         // TODO 27
+
+        System.out.println("******************************TABLEAU***************************************");
 
         for (int i = 0; i < myZoo.getNbrAquatics(); i++) {
             Aquatic[] aquatics = myZoo.getAquaticAnimals();
             aquatics[i].swim();
         }
 
+        System.out.println("myZoo.getAquaticAnimals() : "+ Arrays.toString(myZoo.getAquaticAnimals()));
 
      //   System.out.println(aquatic);
         System.out.println(terrestrial);
